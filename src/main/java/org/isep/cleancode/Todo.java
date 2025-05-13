@@ -1,13 +1,23 @@
 package org.isep.cleancode;
 
+import java.util.Date;
+
 public class Todo {
 
     // this Todo class should be completed to achieve Step 1
 
     private String name;
 
+    private Date dueDate;
+
     public Todo(String name) {
         this.name = name;
+        this.dueDate = null;
+    }
+
+    public Todo(String name, Date dueDate) {
+        this.name = name;
+        this.dueDate = dueDate;
     }
 
     public String getName() {
