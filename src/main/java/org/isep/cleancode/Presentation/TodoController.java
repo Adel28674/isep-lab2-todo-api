@@ -1,5 +1,6 @@
 package org.isep.cleancode.Presentation;
 
+import org.isep.cleancode.Application.ITodoRepository;
 import org.isep.cleancode.Application.TodoManager;
 import org.isep.cleancode.DataPersistence.csvFile.TodoCsvFilesRepository;
 import org.isep.cleancode.DataPersistence.inMemory.TodoInMemoryRepository;
@@ -14,7 +15,7 @@ public class TodoController {
 
     // this Todo class should be completed to achieve Step 1
 
-    private static final TodoManager todoService = new TodoManager(new TodoCsvFilesRepository());
+    private static final TodoManager todoService = new TodoManager(ITodoRepository.getTodoRepository("CSV"));
 
 
     public Object getAllTodos(Request req, Response res) {
