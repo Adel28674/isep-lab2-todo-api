@@ -1,6 +1,7 @@
 package org.isep.cleancode.Presentation;
 
 import org.isep.cleancode.Application.TodoManager;
+import org.isep.cleancode.DataPersistence.TodoRepository;
 import org.isep.cleancode.Model.Todo;
 import org.isep.cleancode.Util.JsonUtils;
 import spark.Request;
@@ -12,13 +13,13 @@ public class TodoController {
 
     // this Todo class should be completed to achieve Step 1
 
-    private static final TodoManager todoService = new TodoManager();
+    private static final TodoManager todoService = new TodoManager(new TodoRepository());
 
 
     public Object getAllTodos(Request req, Response res) {
         res.type("application/json");
 
-        return todoService.getAllTodos();
+        return JsonUtils.toJson(todoService.getAllTodos());
     };
 
     public Object createTodo(Request req, Response res) {

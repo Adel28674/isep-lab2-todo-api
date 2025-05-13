@@ -5,18 +5,20 @@ import org.isep.cleancode.Model.Todo;
 import org.isep.cleancode.Util.JsonUtils;
 
 import java.util.Date;
+import java.util.List;
 
 public class TodoManager {
-    private static TodoRepository todoRepository = new TodoRepository();
+    private ITodoRepository todoRepository ;
 
-    public TodoManager() {
+    public TodoManager(ITodoRepository todoRepository){
+        this.todoRepository = todoRepository;
     }
 
-    public static Object getAllTodos(){
+    public List<Todo> getAllTodos(){
         return todoRepository.getAllTodos();
     }
 
-    public static Todo addTodo(String body) throws IllegalArgumentException {
+    public Todo addTodo(String body) throws IllegalArgumentException {
         Todo newTodo = JsonUtils.parseTodo(body);
         boolean longerThan64Chars = (newTodo.getName()!=null && newTodo.getName().length()>64);
         boolean validDueDate = newTodo.getDueDate()!=null && isValidDate(newTodo.getDueDate());
@@ -34,7 +36,7 @@ public class TodoManager {
         return newTodo;
     }
 
-    public static boolean isValidDate(Date dueDate){
+    public boolean isValidDate(Date dueDate){
         return dueDate.before(new Date());
     }
 

@@ -1,25 +1,29 @@
 package org.isep.cleancode.DataPersistence;
 
+import org.isep.cleancode.Application.ITodoRepository;
 import org.isep.cleancode.Model.Todo;
 import org.isep.cleancode.Util.JsonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodoRepository {
+public class TodoRepository implements ITodoRepository {
 
     private static final List<Todo> todos = new ArrayList<>();
 
-    public static Object getAllTodos(){
-        return JsonUtils.toJson(todos);
+
+    @Override
+    public void addTodo(Todo todo) {
+        todos.add(todo);
     }
 
-    public static void addTodo(Todo newTodo){
-        todos.add(newTodo);
+    @Override
+    public List<Todo> getAllTodos() {
+        return todos;
     }
 
-    public static boolean doesAlreadyNameExists(String name){
+    @Override
+    public boolean doesAlreadyNameExists(String name) {
         return todos.stream().anyMatch(todo -> todo.getName().equalsIgnoreCase(name));
     }
-
 }
