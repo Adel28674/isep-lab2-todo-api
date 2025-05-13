@@ -1,22 +1,19 @@
-package org.isep.cleancode;
+package org.isep.cleancode.Application;
 
-import com.google.gson.JsonSyntaxException;
+import org.isep.cleancode.DataPersistence.TodoRepository;
+import org.isep.cleancode.Model.Todo;
 import org.isep.cleancode.Util.JsonUtils;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class TodoService {
-    private static final List<Todo> todos = new ArrayList<>();
+public class TodoManager {
+    private static TodoRepository todoRepository = new TodoRepository();
 
-    public TodoService() {
+    public TodoManager() {
     }
 
     public static Object getAllTodos(){
-        return JsonUtils.toJson(todos);
+        return todoRepository.getAllTodos();
     }
 
     public static Todo addTodo(String body) throws IllegalArgumentException {
@@ -27,18 +24,14 @@ public class TodoService {
         if(longerThan64Chars){
             throw new IllegalArgumentException("Name exceed the number of chars accepted. MAXIMUM is 64 chars");
         }
-        if (doesAlreadyNameExists(newTodo.getName())){
+        if (todoRepository.doesAlreadyNameExists(newTodo.getName())){
             throw new IllegalArgumentException("Name already Exists");
         }
         if (validDueDate){
             throw new IllegalArgumentException("dueDate invalid");
         }
-        todos.add(newTodo);
+        todoRepository.addTodo(newTodo);
         return newTodo;
-    }
-
-    public static boolean doesAlreadyNameExists(String name){
-        return todos.stream().anyMatch(todo -> todo.getName().equalsIgnoreCase(name));
     }
 
     public static boolean isValidDate(Date dueDate){

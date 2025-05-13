@@ -1,4 +1,4 @@
-package org.isep.cleancode;
+package org.isep.cleancode.Model;
 
 import java.time.LocalDate;
 import java.util.Date;

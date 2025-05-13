@@ -1,19 +1,18 @@
-package org.isep.cleancode;
+package org.isep.cleancode.Presentation;
 
-import com.google.gson.Gson;
+import org.isep.cleancode.Application.TodoManager;
+import org.isep.cleancode.Model.Todo;
 import org.isep.cleancode.Util.JsonUtils;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class TodoController {
 
     // this Todo class should be completed to achieve Step 1
 
-    private static final TodoService todoService = new TodoService();
+    private static final TodoManager todoService = new TodoManager();
 
 
     public Object getAllTodos(Request req, Response res) {

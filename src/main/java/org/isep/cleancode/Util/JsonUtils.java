@@ -2,7 +2,7 @@ package org.isep.cleancode.Util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import org.isep.cleancode.Todo;
+import org.isep.cleancode.Model.Todo;
 
 public class JsonUtils {
     private static final Gson gson = new Gson();
