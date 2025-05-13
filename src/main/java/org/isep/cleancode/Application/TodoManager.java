@@ -1,6 +1,5 @@
 package org.isep.cleancode.Application;
 
-import org.isep.cleancode.DataPersistence.TodoRepository;
 import org.isep.cleancode.Model.Todo;
 import org.isep.cleancode.Util.JsonUtils;
 

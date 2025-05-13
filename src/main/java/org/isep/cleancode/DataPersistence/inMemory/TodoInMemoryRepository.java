@@ -1,13 +1,12 @@
-package org.isep.cleancode.DataPersistence;
+package org.isep.cleancode.DataPersistence.inMemory;
 
 import org.isep.cleancode.Application.ITodoRepository;
 import org.isep.cleancode.Model.Todo;
-import org.isep.cleancode.Util.JsonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodoRepository implements ITodoRepository {
+public class TodoInMemoryRepository implements ITodoRepository {
 
     private static final List<Todo> todos = new ArrayList<>();
 
