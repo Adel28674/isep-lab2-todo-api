@@ -1,4 +1,4 @@
-﻿package org.isep.cleancode.Util;
+package org.isep.cleancode.Util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

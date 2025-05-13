@@ -1,5 +1,6 @@
 package org.isep.cleancode;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Todo {
@@ -26,5 +27,13 @@ public class Todo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }

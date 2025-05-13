@@ -28,7 +28,7 @@ public class TodoController {
             res.status(201);
             res.type("application/json");
             return JsonUtils.toJson(newTodo);
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             res.status(400); // Bad Request
             res.type("application/json");
             return JsonUtils.toJson(Map.of("error", e.getMessage()));

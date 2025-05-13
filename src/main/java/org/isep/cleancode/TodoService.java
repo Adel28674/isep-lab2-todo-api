@@ -1,33 +1,33 @@
-﻿package org.isep.cleancode;
+package org.isep.cleancode;
 
-import com.google.gson.Gson;
-import org.isep.cleancode.Util.Serializer;
+import com.google.gson.JsonSyntaxException;
+import org.isep.cleancode.Util.JsonUtils;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TodoService {
     private static final List<Todo> todos = new ArrayList<>();
-    private static final Gson gson = new Gson();
-
 
     public TodoService() {
     }
 
     public static Object getAllTodos(){
-        return gson.toJson(todos);
+        return JsonUtils.toJson(todos);
     }
 
-    public static Todo addTodo(String body){
-        boolean shorterThan64Chars = false;
-        boolean nameAlreadyExists = false;
-        boolean validDueDate = false;
-        Todo newTodo = Serializer.todoSerializer(body);
+    public static Todo addTodo(String body) throws IllegalArgumentException {
+        Todo newTodo = JsonUtils.parseTodo(body);
+        boolean longerThan64Chars = (newTodo.getName()!=null && newTodo.getName().length()>64);
+        boolean validDueDate = newTodo.getDueDate()!=null && isValidDate(newTodo.getDueDate());
 
-        if(shorterThan64Chars){
+        if(longerThan64Chars){
             throw new IllegalArgumentException("Name exceed the number of chars accepted. MAXIMUM is 64 chars");
         }
-        if (nameAlreadyExists){
+        if (doesAlreadyNameExists(newTodo.getName())){
             throw new IllegalArgumentException("Name already Exists");
         }
         if (validDueDate){
@@ -35,6 +35,14 @@ public class TodoService {
         }
         todos.add(newTodo);
         return newTodo;
+    }
+
+    public static boolean doesAlreadyNameExists(String name){
+        return todos.stream().anyMatch(todo -> todo.getName().equalsIgnoreCase(name));
+    }
+
+    public static boolean isValidDate(Date dueDate){
+        return dueDate.before(new Date());
     }
 
 }
