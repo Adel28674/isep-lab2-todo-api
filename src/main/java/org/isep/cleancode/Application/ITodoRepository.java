@@ -10,7 +10,7 @@ public interface ITodoRepository {
     void addTodo(Todo todo);
     List<Todo> getAllTodos();
 
-    boolean doesAlreadyNameExists(String name);
+    boolean doesNameAlreadyExists(String name);
 
     public static ITodoRepository getTodoRepository(String repo){
         switch (repo){

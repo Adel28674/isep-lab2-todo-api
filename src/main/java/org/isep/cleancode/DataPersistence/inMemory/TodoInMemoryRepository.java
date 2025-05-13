@@ -22,7 +22,7 @@ public class TodoInMemoryRepository implements ITodoRepository {
     }
 
     @Override
-    public boolean doesAlreadyNameExists(String name) {
+    public boolean doesNameAlreadyExists(String name) {
         return todos.stream().anyMatch(todo -> todo.getName().equalsIgnoreCase(name));
     }
 }

@@ -60,7 +60,7 @@ public class TodoCsvFilesRepository implements ITodoRepository {
     }
 
     @Override
-    public boolean doesAlreadyNameExists(String name) {
+    public boolean doesNameAlreadyExists(String name) {
         return getAllTodos().stream()
                 .anyMatch(todo -> todo.getName().equalsIgnoreCase(name));
     }

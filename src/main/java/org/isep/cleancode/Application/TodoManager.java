@@ -25,7 +25,7 @@ public class TodoManager {
         if(longerThan64Chars){
             throw new IllegalArgumentException("Name exceed the number of chars accepted. MAXIMUM is 64 chars");
         }
-        if (todoRepository.doesAlreadyNameExists(newTodo.getName())){
+        if (todoRepository.doesNameAlreadyExists(newTodo.getName())){
             throw new IllegalArgumentException("Name already Exists");
         }
         if (validDueDate){
